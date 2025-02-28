@@ -15,6 +15,7 @@ export default Object.freeze({
     user: process.env.SQL_USER,
     password: process.env.SQL_PASSWORD,
     name: process.env.SQL_DATABASE,
+    dbPort: process.env.DB_PORT,
   },
   rootDir: rootDir,
 })

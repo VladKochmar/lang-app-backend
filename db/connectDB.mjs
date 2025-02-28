@@ -4,6 +4,7 @@ import mysql from 'mysql2/promise'
 async function connectMySql() {
   try {
     const pool = mysql.createPool({
+      port: config.database.dbPort,
       host: config.database.host,
       user: config.database.user,
       password: config.database.password,

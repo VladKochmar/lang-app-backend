@@ -44,8 +44,16 @@ class MySQLCRUDManager {
 
     const whereClause = whereConditions.length ? `WHERE ${whereConditions.join(' AND ')}` : ''
 
-    const limitClause = limit !== null ? 'LIMIT ?' : ''
-    const offsetClause = offset !== null ? 'OFFSET ?' : ''
+    let limitClause = ''
+    let offsetClause = ''
+
+    if (limit !== null) {
+      limitClause = `LIMIT ${limit}`
+    }
+
+    if (offset !== null) {
+      offsetClause = `OFFSET ${offset}`
+    }
 
     const sql = `
       SELECT ${fields.join(', ')}
@@ -55,10 +63,6 @@ class MySQLCRUDManager {
       ${limitClause}
       ${offsetClause}
     `
-
-    if (limit !== null && offset !== null) {
-      filterValues.push(limit, offset)
-    }
 
     const [rows] = await pool.execute(sql, filterValues)
 

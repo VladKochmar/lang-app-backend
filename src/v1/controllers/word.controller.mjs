@@ -15,6 +15,8 @@ class WordController {
         ...data,
       })
     } catch (err) {
+      console.log('err', err)
+
       res.status(500).json({ error: 'Error fetching words' })
     }
   }
